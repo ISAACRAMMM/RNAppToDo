@@ -47,8 +47,8 @@ export async function createTodo(user_id, title){
     const result= await pool.query(
         `INSERT INTO todos (user_id, title) VALUES ($1, $2)`, [user_id,title]
     );
-    const row = result.rows[0];
-    return row;
+    const todoID = result.id;
+    return getTodo(todoID);
 }
 
 export async function deleteTodo(id){
